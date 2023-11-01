@@ -97,7 +97,7 @@ def string_list_stripper(string_list: list) -> list:
     return stripped_contents_list
 
 
-def find_indices(list_to_check, item_to_find):
+def find_indices(list_to_check: list, item_to_find: str) -> list:
     indices = []
     for idx, value in enumerate(list_to_check):
         if value == item_to_find:
@@ -129,7 +129,7 @@ def ref_mark_repetitons_remover(ref_marks: list) -> list:
     return unique_ref_marks
 
 
-def unique_ref_marks_csv_exporter(unique_ref_marks):
+def unique_ref_marks_csv_exporter(unique_ref_marks: list):
     with open("csv_file.csv", mode="w", encoding="utf-8-sig", newline="") as file:
         writer = csv.writer(file)
         for item in unique_ref_marks:
