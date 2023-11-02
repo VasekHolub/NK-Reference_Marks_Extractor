@@ -1,87 +1,11 @@
 import csv
 import os
 
-exclusion_list = [
-    "OBR.",
-    "Obr.",
-    "Obr",
-    "Fig.",
-    "FIG.",
-    "/",
-    "PATENTANSPRÜCHE",
-    "Fig",
-    "Figur",
-    "Anspruch",
-    "Anspruchs",
-    "Ansprüche",
-    "und",
-    "bis",
-    "oder",
-    "Patentansprüchen",
-    "Seite",
-    "US",
-    "WO",
-    "Figure",
-    "Figures",
-    "FIG",
-    "CLAIMS",
-    "to",
-    "page",
-    "Page",
-    "pages",
-    "Pages",
-    "and",
-    "or",
-    "between",
-    "claim",
-    "claims",
-    "obr",
-    "od",
-    "ke",
-    "mezi",
-    "alespoň",
-    "být",
-    "do",
-    "až",
-    "nebo",
-    "NÁROKY",
-    "OBR",
-    "nároky",
-    "nárok",
-    "NÁROK",
-    "mít",
-    "na",
-    "než",
-    "nároku",
-    "+/-",
-    "+",
-    "-",
-    "zejména",
-    "výhodně",
-    "výhodněji",
-    "nejlépe",
-    "nejméně",
-    "nepřesahuje",
-    "über",
-    "wird",
-    "werden",
-    "von",
-    "um",
-    "nahe",
-    "mit",
-    "kann",
-    "ist",
-    "einer",
-    "bei",
-    "als",
-    "Claims",
-    "of",
-    "at",
-    "about",
-    "sind",
-    "zwischen",
-    "Figuren",
-]
+
+def exclusion_list_load(file_path: str) -> list:
+    with open(file_path, encoding="UTF-8") as f:
+        contents = f.read()
+    return contents.split()
 
 
 def txt_file_load(file_path: str) -> list:
@@ -123,7 +47,11 @@ def ref_mark_repetitons_remover(ref_marks: list) -> list:
     unique_ref_marks = list()
     ref_marks_set = set(ref_marks)
     for i in ref_marks_set:
-        if not i.isnumeric() and i.isalnum() and i not in exclusion_list:
+        if (
+            not i.isnumeric()
+            and i.isalnum()
+            and i not in exclusion_list_load(os.path.join("exclusion_list.txt"))
+        ):
             unique_ref_marks.append(i)
     unique_ref_marks.sort()
     return unique_ref_marks
