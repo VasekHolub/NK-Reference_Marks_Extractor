@@ -1,6 +1,5 @@
 import csv
 import os
-import time
 
 
 def exclusion_list_load(file_path: str) -> list:
