@@ -43,7 +43,7 @@ def reference_mark_extractor(extraction_source: list) -> list:
                 elif (
                     extraction_source[k + 1][0].isnumeric()
                     and i not in ref_marks
-                    and not i.isnumeric()
+                    and re.match("^[A-Za-äöüÄÖÜß-]*$", i)
                 ):
                     ref_marks.append(i)
     return ref_marks
