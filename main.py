@@ -1,6 +1,6 @@
 import csv
 import os
-
+import re
 
 def exclusion_list_load(file_path: str) -> list:
     with open(file_path, encoding="UTF-8") as f:
